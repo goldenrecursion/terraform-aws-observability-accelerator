@@ -5,6 +5,9 @@ module "operator" {
   enable_cert_manager = var.enable_cert_manager
   kubernetes_version  = local.eks_cluster_version
   addon_context       = local.context
+  addon_config = {
+    service_account_role_arn = var.adot_service_account_role_arn
+  }
 }
 
 resource "aws_prometheus_workspace" "this" {

@@ -78,3 +78,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "adot_service_account_role_arn" {
+  description = "EKS adot addon service account role arn"
+  type        = string
+  default     = null
+}
