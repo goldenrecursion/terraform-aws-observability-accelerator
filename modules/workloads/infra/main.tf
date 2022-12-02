@@ -80,7 +80,11 @@ module "helm_addon" {
     kubernetes_namespace              = local.namespace
     create_kubernetes_service_account = true
     kubernetes_service_account        = try(var.helm_config.service_account, local.name)
-    irsa_iam_policies                 = ["arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonPrometheusRemoteWriteAccess"]
+    irsa_iam_policies = [
+      "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonPrometheusRemoteWriteAccess",
+      "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
+      "arn:${data.aws_partition.current.partition}:iam::aws:policy/AWSXrayWriteOnlyAccess",
+    ]
   }
 
   addon_context = local.context
