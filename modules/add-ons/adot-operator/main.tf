@@ -109,11 +109,6 @@ resource "kubernetes_role_v1" "adot" {
     resources  = ["pods"]
     verbs      = ["list"]
   }
-  rule {
-    api_groups = ["networking.k8s.io"]
-    resources  = ["ingresses"]
-    verbs      = ["create", "delete", "get", "list", "patch", "update", "watch"]
-  }
 }
 
 resource "kubernetes_role_binding_v1" "adot" {
@@ -259,6 +254,11 @@ resource "kubernetes_cluster_role_v1" "adot" {
     api_groups = ["authorization.k8s.io"]
     resources  = ["subjectaccessreviews"]
     verbs      = ["create"]
+  }
+  rule {
+    api_groups = ["networking.k8s.io"]
+    resources  = ["ingresses"]
+    verbs      = ["create", "delete", "get", "list", "patch", "update", "watch"]
   }
 }
 
